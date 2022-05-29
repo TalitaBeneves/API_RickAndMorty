@@ -1,4 +1,12 @@
-# APIRickAndMorty
+# API Rick And Morty
+<h2><b>Primeira vez que usei a hospedagem do Firebase, gostei bastante.</b></h2>
+<h3>Hospedagem pelo firebase <br> https://dominio-rickandmort.web.app/home</h3>
+
+![image](https://user-images.githubusercontent.com/83943087/170856191-a3cfc488-0fd9-48b4-8973-b5beb7975e19.png)
+
+<h1>Caso não tenha resultados no campo da pesquisa retorna essa mensagem </h1>
+
+![image](https://user-images.githubusercontent.com/83943087/170856259-6d50e0ad-86f8-48fc-a07e-0efe91f6ab36.png)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.5.
 
