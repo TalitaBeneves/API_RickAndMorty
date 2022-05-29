@@ -1,0 +1,51 @@
+<div class="row" infinite-scroll (scrolled)="scrollInfinit()">
+  <div class="col xs-12 col-sm-6 col-md-4" *ngFor="let character of characters">
+    <div class="card">
+      <div class="image">
+        <a [routerLink]="['/character-details', character.id]">
+          <img
+            [src]="character.image"
+            [alt]="character.name"
+            class="card-img-top"
+          />
+        </a>
+      </div>
+      <div class="card-inner">
+        <div class="header">
+          <a [routerLink]="['/character-details', character.id]">
+            <h2>{{ character.name | slice: 0:30 }}</h2>
+          </a>
+          <h4 class="text-muted">
+            Gênero: {{ character.gender | formatText }}
+          </h4>
+          <small class="text-muted"
+            ><b>Criado em: {{ character.created | date: "dd/MM/yyyy" }}</b>
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="margin" *ngIf="msg404">
+    <div>
+      <img
+        src="https://i.ytimg.com/vi/WdjdDzy0VPk/mqdefault.jpg"
+        class="te"
+        alt=""
+      />
+      <br />
+    </div>
+    <h1 class="text-center">
+      Nenhum resultado encontrado! <br />
+      Favor Buscar por outro nome
+    </h1>
+  </div>
+</div>
+<button
+  [ngClass]="'no-hidden'"
+  *ngIf="showGoUpButton"
+  class="btn btn-dark mb-3"
+  (click)="scrollTop()"
+>
+  <i class="bi bi-arrow-up-square"></i>
+</button>
