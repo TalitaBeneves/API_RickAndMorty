@@ -1,1 +1,60 @@
-/* You can add global styles to this file, and also import other style files */
+@charset "../node_modules/@popperjs/core/dist/umd/popper.min.js";
+@charset "../node_modules/jquery/dist/jquery.min.js";
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: rgb(50, 205, 184);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgb(50, 205, 192);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(177, 205, 50);
+}
+
+.container {
+  margin-top: 4rem;
+}
+
+.card {
+  box-sizing: border-box;
+  margin: 10px 0;
+  max-width: 529px;
+  white-space: nowrap;
+
+  transition: all 0.2 ease-in-out;
+  &:hover {
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.24);
+    cursor: pointer;
+  }
+  img {
+    width: 100%;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .card-inner {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 570px) {
+  .card {
+    img {
+      opacity: 1;
+    }
+  }
+}
