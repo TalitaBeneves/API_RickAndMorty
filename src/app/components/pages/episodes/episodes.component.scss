@@ -1,0 +1,74 @@
+@import "../../../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+.container {
+  width: 50%;
+  margin-top: 10%;
+}
+
+@media screen and (max-width: 500px) {
+  .container {
+    width: 90%;
+  }
+}
+
+b{
+  color: rgb(205, 50, 135);
+}
+
+.episodes__list {
+  counter-reset: gradient-counter;
+  list-style: none;
+  margin-top: 5%;
+  // margin: 1.75rem 0;
+  padding-left: 1rem;
+
+  li {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0.25rem 0.25rem 0.6rem rgba(0, 0, 0, 0.05),
+      0 0.5rem 1.125rem rgba(75, 0, 0, 0.05);
+    counter-increment: gradient-counter;
+    min-height: 3rem;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 2rem;
+    position: relative;
+
+    &::before,
+    &::after {
+      background: linear-gradient(135deg, #09060c 0%, #5e2c99 100%);
+      border-radius: 1rem 1rem 1rem 1rem;
+      content: "";
+      height: 3rem;
+      left: -1rem;
+      overflow: hidden;
+      position: absolute;
+      top: -1rem;
+      width: 3rem;
+    }
+
+    &::before {
+      box-shadow: 0.25rem 0.25rem 0.6rem rgba(0, 0, 0, 0.05),
+        0 0.5rem 1.125rem rgba(75, 0, 0, 0.05);
+      content: counter(gradient-counter);
+      color: #fff;
+      display: flex;
+      font: "RocknRoll One";
+      font-size: 25px;
+      justify-content: flex-end;
+      padding: 0.125em 0.54em;
+      z-index: 1;
+      align-items: flex-end;
+      flex-direction: column;
+    }
+
+    &:hover {
+      box-shadow: 5px 5px 1px rgba(250, 246, 246, 0.5);
+      -webkit-box-shadow: 5px 5px 20px rgba(250, 246, 246, 0.5);
+      -moz-box-shadow: 5px 5px 20px rgba(250, 246, 246, 0.5);
+    }
+
+    + li {
+      margin-top: 2rem;
+    }
+  }
+}
