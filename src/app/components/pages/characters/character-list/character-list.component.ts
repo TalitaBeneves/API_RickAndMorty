@@ -1,9 +1,16 @@
+import { LocalStorageService } from './../../../../core/services/localStorage/localStorage.service';
 import { DOCUMENT } from '@angular/common';
-import { Component, HostListener, Inject, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostListener,
+  Inject,
+  OnInit,
+} from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, take } from 'rxjs';
+import { CharacterService } from 'src/app/core/services/characterService/character.service';
 import { Character } from '../../../../core/model/character';
-import { CharacterService } from './../../../../core/services/character.service';
 type RequestInfo = {
   next: any;
 };
@@ -14,6 +21,9 @@ type RequestInfo = {
 })
 export class CharacterListComponent implements OnInit {
   characters: Character[] = [];
+  icon!: Character;
+  characters$ = this.characterService.characters$;
+
   info: RequestInfo = {
     next: null,
   };
@@ -23,10 +33,11 @@ export class CharacterListComponent implements OnInit {
   hideScrol = 500;
   showScrol = 500;
   msg404!: boolean;
-  showGoUpButton: boolean = false;
+  showButton: boolean = false;
 
   constructor(
     private characterService: CharacterService,
+    private localStorage: LocalStorageService,
     private activeRoute: ActivatedRoute,
     private router: Router,
     @Inject(DOCUMENT) private document: Document
@@ -38,37 +49,21 @@ export class CharacterListComponent implements OnInit {
     this.getCharecters();
   }
 
-  @HostListener('window: scroll', [])
-  onWindowScroll() {
+  @HostListener('window:scroll')
+  onWindowScroll(): void {
     const yOffSet = window.pageYOffset;
-    if (
-      (yOffSet ||
-        this.document.documentElement.scrollTop ||
-        this.document.body.scrollTop) > this.showScrol
-    ) {
-      this.showGoUpButton = true;
-    } else if (
-      this.showGoUpButton &&
-      (yOffSet ||
-        this.document.documentElement.scrollTop ||
-        this.document.body.scrollTop) < this.hideScrol
-    ) {
-      this.showGoUpButton = false;
-    }
+    const scrollTop = this.document.documentElement.scrollTop;
+    this.showButton = (yOffSet || scrollTop) > this.showScrol;
   }
 
-  scrollInfinit() {
-    if (this.info.next) {
-      this.pageNumber++;
-      this.getDataFromService();
-    }
+  onScrollTop(): void {
+    this.document.documentElement.scrollTop = 0;
   }
 
-  scrollTop() {
-    this.document.body.scrollTop = 0; //Safari
-    this.document.documentElement.scrollTop = 0; //Other
+  onScrollDown(): void {
+    this.pageNumber++;
+    this.characterService.getDetails(this.pageNumber);
   }
-
   urlChange() {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
@@ -82,6 +77,17 @@ export class CharacterListComponent implements OnInit {
           console.log(error);
         },
       });
+  }
+
+  getIcon(): string {
+    return this.icon.isFavorite ? 'heart-solid.svg' : 'heart.svg';
+  }
+
+  toggleFavorite(): void {
+    const isFavorite = this.icon.isFavorite;
+    this.getIcon();
+    this.icon.isFavorite = !isFavorite;
+    // this.localStorageSvc.addOrRemoveFavorite(this.characters);
   }
 
   // Pegando o value do search e exibindo
