@@ -1,0 +1,35 @@
+<article class="card">
+  <a [routerLink]="['/character-details', character.id]" class="card__link">
+    <figure>
+      <img
+        rel="preload"
+        as="image"
+        width="300"
+        height="300"
+        [src]="character.image"
+        [alt]="character.name"
+      />
+    </figure>
+  </a>
+  <div class="card__details">
+    <img
+      (click)="toggleFavorite()"
+      rel="preload"
+      as="image"
+      width="30"
+      height="30"
+      src="/assets/img/{{ getIcon() }}"
+      [alt]="character.name"
+    />
+
+    <h3>{{ character.name | slice: 0:20 }}</h3>
+    <hr />
+    <ul class="card__list">
+      <li><label class="table__label">Status:</label>{{ character.status }}</li>
+      <li>
+        <label class="table__label">Espécie:</label>{{ character.species }}
+      </li>
+      <li><label class="table__label">Gênero:</label>{{ character.gender | formatText}}</li>
+    </ul>
+  </div>
+</article>
