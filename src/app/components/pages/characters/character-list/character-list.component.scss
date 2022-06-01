@@ -1,3 +1,5 @@
+@import "../../../../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
 .no-hidden {
   position: fixed;
   bottom: 10px;
@@ -13,48 +15,12 @@ section.character__list {
   margin-top: 5%;
 }
 
-.title {
-  font-size: 2rem;
-  color: #fff;
-}
-
-.mT {
-  margin-top: 7%;
-}
-
-.background {
-  background-color: rgba(0, 255, 221, 0.486);
-}
-
-.card {
-  width: 100%;
-}
-.margin {
-  max-width: 380px;
-}
-
-.color {
-  width: 100%;
-  background-color: #6e0d77c7;
-}
-
-ul {
-  padding: 0;
-
-  li {
-    padding: 10px 20px 0px 20px;
-    display: flex;
-    justify-content: space-between;
-    color: #09cdce;
-    font-size: 15px;
-    font-weight: bold;
-
-    .table__label {
-      overflow-wrap: break-word;
-      word-wrap: break-word;
-      hyphens: auto;
-      font-size: 15px;
-      font-weight: bold;
-    }
-  }
+.bStyle {
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 3;
+  margin: .7rem;
+  color: black;
+  background-color: yellowgreen;
 }

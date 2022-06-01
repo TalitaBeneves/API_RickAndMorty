@@ -47,23 +47,25 @@ export class CharacterListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCharecters();
+    this.scrollInfinit();
   }
 
   @HostListener('window:scroll')
   onWindowScroll(): void {
     const yOffSet = window.pageYOffset;
     const scrollTop = this.document.documentElement.scrollTop;
-    this.showButton = (yOffSet || scrollTop) > this.showScrol;
+    this.showButton = (yOffSet || scrollTop) > this.hideScrol;
   }
 
   onScrollTop(): void {
     this.document.documentElement.scrollTop = 0;
   }
 
-  onScrollDown(): void {
+  scrollInfinit() {
     this.pageNumber++;
-    this.characterService.getDetails(this.pageNumber);
+    this.characterService.getCharactersByPage(this.pageNumber);
   }
+
   urlChange() {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
@@ -95,7 +97,6 @@ export class CharacterListComponent implements OnInit {
     this.activeRoute.queryParams.pipe(take(1)).subscribe({
       next: (paramMap) => {
         this.query = paramMap['q'];
-        this.getDataFromService();
       },
       error: (error) => {
         console.log(error);
@@ -103,7 +104,6 @@ export class CharacterListComponent implements OnInit {
     });
   }
 
-  // Pegando os dados
   getDataFromService() {
     this.characterService
       .search(this.query, this.pageNumber)
