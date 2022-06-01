@@ -114,4 +114,4 @@ export class CharacterService {
       )
       .subscribe();
   }
-}   package-lock.json package.json src/app/components/pages/characters/character-card/character-card.component.ts src/app/components/pages/characters/character-list/character-list.component.html src/app/components/pages/characters/character-list/character-list.component.scss src/app/components/pages/characters/character-list/character-list.component.ts src/app/components/pages/characters/character-list/character-list.module.ts src/app/components/pages/home/home.component.ts src/app/core/services/characterService/character.service.ts
+}
