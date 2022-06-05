@@ -1,6 +1,7 @@
 # API Rick And Morty
-<h2><b>Primeira vez que usei a hospedagem do Firebase, gostei bastante 🙃.</b></h2>
-<h3>Hospedagem pelo firebase <br> https://dominio-rickandmort.web.app/home</h3>
+<p>Com a API Você podendo ver a listagem de personagens infinitas e ver os detalhes de cada personagem, tem como pesquisar por um personagem e caso algum nome no campo da pesquisa não seja encontrado retorna uma mensagem. A hospedagem fica a cargo do Firebase foi a primeira vez que usei a hospedagem e gostei bastante 🙃.</p>
+
+<h3>Link da hospedagem pelo firebase <br> https://dominio-rickandmort.web.app/home</h3>
 
 ![image](https://user-images.githubusercontent.com/83943087/170856191-a3cfc488-0fd9-48b4-8973-b5beb7975e19.png)
 
