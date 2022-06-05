@@ -1,0 +1,49 @@
+.margin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3%;
+  max-width: 50%;
+}
+
+.mtsss {
+  margin-top: 5%;
+}
+
+.mtssss {
+  margin-top: 8%;
+}
+
+img {
+  float: left;
+  border: transparent thin solid;
+  padding: 5px;
+  margin: 0px 10px 10px 0;
+  border-radius: 5%;
+}
+
+.about__paragraph {
+  text-align: start;
+  max-width: 600px;
+}
+
+section.about__page {
+  margin-top: 4rem;
+  color: #f5f5f5;
+
+  .about__container {
+    display: flex;
+    margin-top: 2rem;
+  }
+
+  .about__copy {
+    text-align: start;
+  }
+}
+ul {
+  font-size: 20px;
+}
+li {
+  font-weight: 700;
+  font-size: 20px;
+}
