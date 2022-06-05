@@ -1,7 +1,14 @@
-<input
-  #inputSearch
-  type="text"
-  class="form-control-bg border border-primary rounded"
-  placeholder="  Pesquisar"
-  (keyup)="onSearch(inputSearch.value)"
-/>
+<div class="container">
+  <section class="search__container">
+    <div class="search__name">
+      <label for="searchName"> Procura pelo Personagem....</label>
+      <input
+        type="text"
+        class="search__input"
+        placeholder="Pesquisar...."
+        [formControl]="search"
+      />
+      <button (click)="onClear()">Limpar</button>
+    </div>
+  </section>
+</div>

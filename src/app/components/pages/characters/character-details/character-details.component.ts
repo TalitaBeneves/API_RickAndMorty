@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, take } from 'rxjs';
-import { Character } from 'src/app/core/model/character';
+import { Observable, take, tap } from 'rxjs';
 import { CharacterService } from 'src/app/core/services/characterService/character.service';
+import { Character } from './../../../../core/model/character';
 
 @Component({
   selector: 'app-character-details',
@@ -10,12 +10,13 @@ import { CharacterService } from 'src/app/core/services/characterService/charact
   styleUrls: ['./character-details.component.scss'],
 })
 export class CharacterDetailsComponent implements OnInit {
-  character$!: Observable<Character>;
+  characterId!: Observable<Character>;
+  character$!: Observable<any>;
 
   constructor(
-    private characterService: CharacterService,
     private activeRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private characterService: CharacterService
   ) {}
 
   ngOnInit(): void {
@@ -23,18 +24,17 @@ export class CharacterDetailsComponent implements OnInit {
   }
 
   detailsCharacter() {
-    this.activeRoute.params.pipe(take(1)).subscribe({
-      next: (params) => {
-        const id = params['id'];
-        this.character$ = this.characterService.getDetails(id);
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
+    this.activeRoute.params
+      .pipe(
+        take(1),
+        tap(
+          ({ id }) => (this.character$ = this.characterService.getDetails(id))
+        )
+      )
+      .subscribe();
   }
 
   goBack() {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/character-list']);
   }
 }

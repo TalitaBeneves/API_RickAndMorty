@@ -1,3 +1,4 @@
+<app-form-search></app-form-search>
 <section class="character__list" infinite-scroll (scrolled)="scrollInfinit()">
   <ng-container *ngIf="characters$ | async as characters; else showEmpty">
     <app-character-card
@@ -8,7 +9,7 @@
   <ng-template #showEmpty>
     <div class="notResults">
       <h1 class="title">Not results</h1>
-      <img src="assets/imgs/404.jpeg" alt="404" />
+      <img src="https://observatoriodocinema.uol.com.br/wp-content/uploads/2019/11/rick-and-morty-season-5-ideas-00.jpg" alt="404" />
     </div>
   </ng-template>
   <button *ngIf="showButton" (click)="onScrollTop()" class="btn bStyle">

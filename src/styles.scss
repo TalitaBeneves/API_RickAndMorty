@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap");
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 *,
 *:before,
@@ -13,14 +14,13 @@ html {
   scroll-behavior: smooth;
 }
 
-body {
-  background-color: #5e2c99;
-}
+// body {
+//   background-color: #5e2c99;
+// }
 
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
-
 }
 
 ::-webkit-scrollbar-track {
@@ -30,4 +30,48 @@ body {
 ::-webkit-scrollbar-thumb {
   background-color: rgb(177, 205, 50);
   border-radius: 20px;
+}
+
+.light-mode {
+  background-color: #5e2c99;
+
+  .cards {
+    background-color: rgba(120, 161, 36, 0.829);
+    ul {
+      li {
+        padding: 0.4rem 0 0.4rem 0.6rem;
+        display: flex;
+        justify-content: space-between;
+        color: #033030;
+        font-weight: bold;
+
+        .table__label {
+          color: #000;
+          overflow-wrap: break-word;
+          word-wrap: break-word;
+          hyphens: auto;
+        }
+      }
+    }
+
+    .card__details {
+      padding: 0 10px 10px;
+      position: relative;
+
+      h3 {
+        font-size: 25px;
+        padding: 10px;
+        color: rgba(0, 0, 0, 0.788);
+      }
+    }
+  }
+}
+
+.dark-mode {
+  background-color: rgb(22, 20, 20) !important;
+  color: white !important;
+
+  .cards {
+    background-color: #5e2c99;
+  }
 }

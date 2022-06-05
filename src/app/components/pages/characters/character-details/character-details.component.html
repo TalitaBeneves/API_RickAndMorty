@@ -1,34 +1,35 @@
-<div
-  class="row justify-content-center mb-5 margin"
-  *ngIf="character$ | async as character"
->
-  <div class="col xs-12 col-sm-6 col-md-5">
-    <div class="card">
-      <div class="image">
-        <img
-          [src]="character.image"
-          [alt]="character.name"
-          class="card-img-top"
-        />
-      </div>
-      <div class="card-inner">
-        <div class="header">
-          <h2>{{ character.name | slice: 0:30 }}</h2>
-          <h4 class="text-muted">
-            <b>Gênero: {{ character.gender | formatText }}</b>
-          </h4>
-          <h4 class="text-muted">
-            <b>Status: {{ character.status }}</b>
-          </h4>
-          <h4 class="text-muted">
-            <b>Espécie: {{ character.species }}</b>
-          </h4>
-          <h4 class="text-muted">
-            <b>Criado em: {{ character.created | date: "dd/MM/yyyy" }}</b>
-          </h4>
-        </div>
-      </div>
-      <button class="btn btn-dark btn-lg m-3" (click)="goBack()">Voltar</button>
+<section class="card__details2">
+  <article class="cards" *ngIf="character$ | async as character">
+    <figure>
+      <img
+        rel="preload"
+        as="image"
+        width="300"
+        height="300"
+        [src]="character.image"
+        [alt]="character.name"
+      />
+    </figure>
+    <div class="card__details">
+      <h3>{{ character.name | slice: 0:20 }}</h3>
+      <hr />
+      <ul class="card__list">
+        <li>
+          <label class="table__label">Status:</label>{{ character.status }}
+        </li>
+        <li>
+          <label class="table__label">Espécie:</label>{{ character.species }}
+        </li>
+        <li>
+          <label class="table__label">Criado em:</label
+          >{{ character.created | date: "dd/MM/yyyy" }}
+        </li>
+        <li>
+          <label class="table__label">Gênero:</label
+          >{{ character.gender | formatText }}
+        </li>
+      </ul>
     </div>
-  </div>
-</div>
+    <button class="btn btn-dark b" (click)="goBack()">Voltar</button>
+  </article>
+</section>

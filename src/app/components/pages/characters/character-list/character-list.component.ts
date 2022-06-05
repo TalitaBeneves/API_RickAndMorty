@@ -47,7 +47,7 @@ export class CharacterListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCharecters();
-    this.scrollInfinit();
+
   }
 
   @HostListener('window:scroll')
@@ -104,24 +104,25 @@ export class CharacterListComponent implements OnInit {
     });
   }
 
-  getDataFromService() {
-    this.characterService
-      .search(this.query, this.pageNumber)
-      .pipe(take(1))
-      .subscribe({
-        next: (res: any) => {
-          if (res?.results?.length) {
-            console.log(res);
-            const { info, results } = res;
-            this.characters = [...this.characters, ...results];
-            this.info = info;
-          } else {
-            this.characters = [];
-          }
-        },
-        error: (error) => {
-          this.msg404 = true;
-        },
-      });
-  }
+  // getDataFromService() {
+  //   this.characterService
+  //     .search(this.query, this.pageNumber)
+  //     .pipe(take(1))
+  //     .subscribe({
+  //       next: (res: any) => {
+  //         if (res?.results?.length) {
+  //           console.log(res);
+  //           const { info, results } = res;
+  //           this.characters = [...this.characters, ...results];
+  //           this.info = info;
+  //         } else {
+  //           this.characters = [];
+  //         }
+  //       },
+  //       error: (error) => {
+  //         c
+  //         this.msg404 = true;
+  //       },
+  //     });
+  // }
 }

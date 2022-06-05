@@ -22,4 +22,3 @@ export class SpinnerComponent implements OnInit {
 
   ngOnInit(): void {}
 }
-src/app/core/services/spinner/ src/app/core/shared/components/spinner/ src/app/core/shared/interceptors/ src/app/app.component.html src/app/app.module.ts src/app/core/services/characterService/character.service.ts

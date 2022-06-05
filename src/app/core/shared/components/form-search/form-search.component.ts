@@ -1,23 +1,49 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+  map,
+  Subject,
+  takeUntil,
+  tap,
+} from 'rxjs';
+import { CharacterService } from 'src/app/core/services/characterService/character.service';
 
 @Component({
   selector: 'app-form-search',
   templateUrl: './form-search.component.html',
   styleUrls: ['./form-search.component.scss'],
 })
-export class FormSearchComponent implements OnInit {
-  constructor(private router: Router) {}
+export class FormSearchComponent {
+  search = new FormControl('');
+  private destroy$ = new Subject<unknown>();
 
-  ngOnInit(): void {}
+  constructor(private characterService: CharacterService) {
+    this.onSearch();
+  }
 
-  onSearch(value: string) {
-    if (value && value.length > 3) {
-      this.router.navigate(['/character-list'], {
-        queryParams: { q: value },
-      });
-    } else {
-      this.router.navigate(['/home']);
-    }
+  onClear(): void {
+    this.search.reset();
+    this.characterService.getDataAPI();
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next({});
+    this.destroy$.complete();
+  }
+
+  private onSearch(): void {
+    this.search.valueChanges
+      .pipe(
+        map((search) => search?.toLowerCase().trim()),
+        debounceTime(300),
+        distinctUntilChanged(),
+        filter((search) => search !== '' && search?.length > 2),
+        tap((search) => this.characterService.filterData(search)),
+        takeUntil(this.destroy$)
+      )
+      .subscribe();
   }
 }

@@ -1,11 +1,11 @@
-.card {
+.cards {
   margin: 10px;
   border: 5px solid transparent;
   box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
   max-width: 350px;
   transition: all 0.6s;
   border-radius: 0.5rem;
-  background-color: yellowgreen;
+  // background-color: yellowgreen;
   cursor: pointer;
 
   figure {
@@ -22,11 +22,11 @@
       padding: 0.4rem 0 0.4rem 0.6rem;
       display: flex;
       justify-content: space-between;
-      color: #033030;
+      // color: #033030;
       font-weight: bold;
 
       .table__label {
-        color: #000;
+        // color: #000;
         overflow-wrap: break-word;
         word-wrap: break-word;
         hyphens: auto;
@@ -41,7 +41,7 @@
     h3 {
       font-size: 25px;
       padding: 10px;
-      color: rgba(0, 0, 0, 0.788);
+      // color: rgba(0, 0, 0, 0.788);
     }
     hr {
       background-color: #000;
