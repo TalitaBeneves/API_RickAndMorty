@@ -1,14 +1,18 @@
-<div class="container">
+<div class="container d-flex justify-content-center">
   <section class="search__container">
-    <div class="search__name">
-      <label for="searchName"> Procura pelo Personagem....</label>
-      <input
-        type="text"
-        class="search__input"
-        placeholder="Pesquisar...."
-        [formControl]="search"
-      />
-      <button (click)="onClear()">Limpar</button>
-    </div>
+    <input
+      type="text"
+      class="search__input"
+      placeholder="Pesquisar...."
+      [formControl]="search"
+    />
+    <button
+      (click)="onClear()"
+      data-toggle="tooltip"
+      data-placement="right"
+      title="Limpar"
+    >
+      <i class="bi bi-trash3"></i>
+    </button>
   </section>
 </div>

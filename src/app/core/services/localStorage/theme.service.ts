@@ -1,4 +1,5 @@
 import { Injectable, Renderer2, RendererFactory2 } from '@angular/core';
+import { Usuario } from '../../model/usuario';
 
 @Injectable({
   providedIn: 'root',
@@ -6,6 +7,7 @@ import { Injectable, Renderer2, RendererFactory2 } from '@angular/core';
 export class ThemeService {
   private renderer!: Renderer2;
   private colorTheme!: any;
+  usuario: Usuario = new Usuario();
 
   constructor(renderFactory: RendererFactory2) {
     this.renderer = renderFactory.createRenderer(null, null);
@@ -40,4 +42,6 @@ export class ThemeService {
       this.colorTheme = 'light-mode';
     }
   }
+
+  
 }

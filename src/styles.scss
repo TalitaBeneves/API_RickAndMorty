@@ -14,10 +14,6 @@ html {
   scroll-behavior: smooth;
 }
 
-// body {
-//   background-color: #5e2c99;
-// }
-
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -30,6 +26,10 @@ html {
 ::-webkit-scrollbar-thumb {
   background-color: rgb(177, 205, 50);
   border-radius: 20px;
+}
+
+body{
+  background-color: #000;
 }
 
 .light-mode {
@@ -65,6 +65,9 @@ html {
       }
     }
   }
+  .episodes__list li {
+    background-color: #fff;
+  }
 }
 
 .dark-mode {
@@ -73,5 +76,9 @@ html {
 
   .cards {
     background-color: #5e2c99;
+  }
+
+  .episodes__list li {
+    background-color: rgba(139, 182, 53, 0.829);
   }
 }

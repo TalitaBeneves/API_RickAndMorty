@@ -53,8 +53,48 @@
             >
           </li>
         </ul>
-        <div (click)="toggleDarkMode()">
-          <i class="bi bi-toggle-on"></i>
+
+        <div class="dropdown dropstart">
+          <a
+            class="dropdown-toggle"
+            type="button"
+            id="dropdownMenu2"
+            data-bs-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <img class="profile" src="{{ user?.photoUrl }}" alt="" />
+          </a>
+
+          <div class="dropdown-menu row mr-5" aria-labelledby="dropdownMenu2">
+            <h5 class="dropdown-header">{{ user?.name }}</h5>
+            <p class="dropdown-item">{{ user?.email }}</p>
+            <hr class="dropdown-divider" />
+            <h5 class="dropdown-header">Mudar Tema</h5>
+
+            <i
+              class="mx-3"
+              data-toggle="tooltip"
+              title="Mudar Theme"
+              [ngClass]="{
+                'bi bi-toggle-off': !trocaIcon,
+                'bi bi-toggle-on': trocaIcon
+              }"
+              [(ngModel)]="isDarkMode"
+              (click)="toggleDarkMode()"
+            ></i>
+
+            <hr class="dropdown-divider" />
+            <div class="d-flex justify-content-center">
+              <button
+                class="d-flex justify-content-center butao"
+                type="button"
+                (click)="logout()"
+              >
+                Sair
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

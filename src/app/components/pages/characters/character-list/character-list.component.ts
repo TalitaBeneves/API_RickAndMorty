@@ -1,16 +1,10 @@
-import { LocalStorageService } from './../../../../core/services/localStorage/localStorage.service';
 import { DOCUMENT } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  HostListener,
-  Inject,
-  OnInit,
-} from '@angular/core';
+import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, take } from 'rxjs';
 import { CharacterService } from 'src/app/core/services/characterService/character.service';
 import { Character } from '../../../../core/model/character';
+import { LocalStorageService } from './../../../../core/services/localStorage/localStorage.service';
 type RequestInfo = {
   next: any;
 };
@@ -37,7 +31,6 @@ export class CharacterListComponent implements OnInit {
 
   constructor(
     private characterService: CharacterService,
-    private localStorage: LocalStorageService,
     private activeRoute: ActivatedRoute,
     private router: Router,
     @Inject(DOCUMENT) private document: Document
@@ -47,7 +40,6 @@ export class CharacterListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCharecters();
-
   }
 
   @HostListener('window:scroll')
@@ -89,7 +81,6 @@ export class CharacterListComponent implements OnInit {
     const isFavorite = this.icon.isFavorite;
     this.getIcon();
     this.icon.isFavorite = !isFavorite;
-    // this.localStorageSvc.addOrRemoveFavorite(this.characters);
   }
 
   // Pegando o value do search e exibindo
@@ -103,26 +94,4 @@ export class CharacterListComponent implements OnInit {
       },
     });
   }
-
-  // getDataFromService() {
-  //   this.characterService
-  //     .search(this.query, this.pageNumber)
-  //     .pipe(take(1))
-  //     .subscribe({
-  //       next: (res: any) => {
-  //         if (res?.results?.length) {
-  //           console.log(res);
-  //           const { info, results } = res;
-  //           this.characters = [...this.characters, ...results];
-  //           this.info = info;
-  //         } else {
-  //           this.characters = [];
-  //         }
-  //       },
-  //       error: (error) => {
-  //         c
-  //         this.msg404 = true;
-  //       },
-  //     });
-  // }
 }
