@@ -1,0 +1,85 @@
+<section class="d-flex justify-content-center">
+  <div class="card row container col-md-4">
+    <h3 class="login">Faça seu Cadastro</h3>
+    <br />
+    <div [formGroup]="form">
+      <div class="form-group">
+        <input
+          [(ngModel)]="email"
+          type="email"
+          required
+          name="email"
+          placeholder="E-mail"
+          class="form-control p-3 mt-3"
+          formControlName="email"
+          [ngClass]="{ 'is-invalid': f.email.errors && f.email.touched }"
+        />
+        <div *ngIf="f.email.errors?.required" class="invalid-feedback">
+          E-mail deve ser valido
+        </div>
+      </div>
+
+      <div class="form-group my-4">
+        <input type="file" accept=".png, .jpg" (change)="upload($event)" />
+      </div>
+      <div class="progress">
+        <div
+          class="progress-bar progress-bar-striped bg-success"
+          role="progressbar"
+          [style.width]="(uploadPercent | async) + '%'"
+        ></div>
+      </div>
+      <input #imageUser type="hidden" [value]="urlImage | async" />
+
+      <div class="form-group my-3">
+        <input
+          [(ngModel)]="senha"
+          required
+          type="password"
+          name="senha"
+          placeholder="Senha"
+          class="form-control p-3 my-3"
+          formControlName="senha"
+          [ngClass]="{ 'is-invalid': f.senha.errors && f.senha.touched }"
+        />
+        <div *ngIf="f.senha.errors?.required" class="invalid-feedback">
+          Senha é obrigatório
+        </div>
+        <div *ngIf="f.senha.errors?.minlength" class="invalid-feedback">
+          Senha deve conter no minimo 6 caracteres
+        </div>
+      </div>
+
+      <ngx-recaptcha2
+        #captchaElem
+        [siteKey]="siteKey"
+        [theme]="theme"
+        formControlName="recaptcha"
+      >
+      </ngx-recaptcha2>
+    </div>
+    <div class="register__button">
+      <button type="submit" class="button_L my-3" (click)="register()">
+        Fazer Cadastro
+      </button>
+
+      <div class="d-flex justify-content-center">
+        <button
+          type="submit"
+          class="button_google my-3"
+          (click)="registerGoogle()"
+        >
+          <img
+            src="../../../../assets//img/google.png"
+            width="30px"
+            height="30px"
+          />
+          <span class="px-2"> Cadastrar com Google</span>
+        </button>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center">
+      <a [routerLink]="['/login']">Voltar para Login</a>
+    </div>
+  </div>
+</section>
