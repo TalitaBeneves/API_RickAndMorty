@@ -38,6 +38,31 @@ section {
     background: transparent;
   }
 
+  .upload {
+    font-size: 16px;
+    background-color: transparent;
+    border-radius: 50px;
+    border: none;
+    box-shadow: 5px 5px 10px black;
+    width: 100%;
+    outline: none;
+    cursor: pointer;
+  }
+
+  ::-webkit-file-upload-button {
+    color: #fff;
+    background-color: #373654;
+    padding: 10px;
+    border: none;
+    border-radius: 50px;
+    box-shadow: 1px 0 1px 1px #373654;
+    outline: none;
+  }
+
+  ::-webkit-file-upload-button:hover {
+    background-color: #1f1b85;
+  }
+
   input:focus {
     box-shadow: 0 0 0 0;
     color: #fff;
@@ -79,5 +104,15 @@ section {
     font-size: 15px;
     border-radius: 3px;
     font-weight: bold;
+  }
+}
+@media screen and (max-width: 667px) {
+  .section {
+    width: 100%;
+    padding: 100%;
+  }
+  .card {
+    width: 90% !important;
+    padding: 100%;
   }
 }

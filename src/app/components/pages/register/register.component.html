@@ -20,18 +20,6 @@
           </div>
         </div>
 
-        <div class="form-group my-4">
-          <input type="file" accept=".png, .jpg" (change)="upload($event)" />
-        </div>
-        <div class="progress">
-          <div
-            class="progress-bar progress-bar-striped bg-success"
-            role="progressbar"
-            [style.width]="(uploadPercent | async) + '%'"
-          ></div>
-        </div>
-        <input #imageUser type="hidden" [value]="urlImage | async" />
-
         <div class="form-group my-3">
           <input
             [(ngModel)]="senha"
@@ -51,6 +39,25 @@
           </div>
         </div>
 
+        <div class="form-group my-4">
+          <input
+            class="upload"
+            type="file"
+            accept=".png, .jpg"
+            (change)="upload($event)"
+          />
+        </div>
+        <div *ngIf="uploadPercent | async as pct" class="progress">
+          <div
+            class="progress-bar progress-bar-striped bg-success"
+            role="progressbar"
+            [style.width]="(uploadPercent | async) + '%'"
+          >
+            <span>{{ pct | number }} %</span>
+          </div>
+        </div>
+        <input #imageUser type="hidden" [value]="urlImage | async" />
+        <br />
         <ngx-recaptcha2
           #captchaElem
           [siteKey]="siteKey"

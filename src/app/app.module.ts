@@ -43,6 +43,7 @@ import { GraphQLModule } from './graphql.module';
 
     ToastrModule.forRoot({
       positionClass: 'toast-top-center',
+      timeOut: 200000,
     }),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,

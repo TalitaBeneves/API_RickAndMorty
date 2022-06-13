@@ -1,3 +1,4 @@
+import { async } from '@angular/core/testing';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -25,6 +26,7 @@ export class RegisterComponent implements OnInit {
   siteKey: string = environment.siteKey;
 
   uploadPercent: Observable<any> | undefined;
+  snapshot!: Observable<any>;
   urlImage!: Observable<string>;
 
   constructor(
@@ -78,8 +80,7 @@ export class RegisterComponent implements OnInit {
                 photoURL: this.inputImageUser.nativeElement.value,
               })
               .then(function () {
-                console.log('USER');
-                console.log('a', user);
+
               })
               .catch(function (error) {
                 console.log(error);
@@ -98,33 +99,20 @@ export class RegisterComponent implements OnInit {
       .catch((err) => console.log('err', err.message));
   }
 
-  // registerUser() {
-  //   this.authService.registerUser(this.email, this.senha)
-  //   .then((res) => {
-  //     this.authService.isAuth().subscribe(user => {
-  //       if (user) {
-  //         user.updateProfile({
-  //           displayName: '',
-  //           photoURL: this.inputImageUser.nativeElement.value
-  //         }).then(() => {
-  //           this.router.navigate(['/character-list']);
-  //         }).catch((error) => console.log('error', error));
-  //       }
-  //     });
-  //   }).catch(err => console.log('err', err.message));
-  // }
-
   upload(e: any) {
-    console.log(e.target.files[0]);
     const id = Math.random().toString(36).substring(2);
     const file = e.target.files[0];
     const filePath = `uploads/profile_${id}`;
     const ref = this.storage.ref(filePath);
     const task = this.storage.upload(filePath, file);
+
     this.uploadPercent = task.percentageChanges();
     task
       .snapshotChanges()
       .pipe(finalize(() => (this.urlImage = ref.getDownloadURL())))
       .subscribe();
+  }
+  isAtivo(snapshot: any){
+    return snapshot.state == 'running' && snapshot.bytesTrasferred < snapshot.totalBytes
   }
 }

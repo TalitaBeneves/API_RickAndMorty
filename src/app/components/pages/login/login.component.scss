@@ -81,3 +81,13 @@ section {
     font-weight: bold;
   }
 }
+@media screen and (max-width: 667px) {
+  .section{
+    width: 100%;
+    padding: 100%;
+  }
+  .card{
+    width: 90%!important;
+    padding: 100%;
+  }
+}
