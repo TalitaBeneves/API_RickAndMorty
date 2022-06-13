@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
+import { ToastrService } from 'ngx-toastr';
 import {
   BehaviorSubject,
   catchError,
@@ -54,6 +55,7 @@ export class CharacterService {
   constructor(
     private http: HttpClient,
     private apollo: Apollo,
+    private toasrt: ToastrService,
     private locaStorage: LocalStorageService
   ) {
     this.getDataAPI();
@@ -94,11 +96,14 @@ export class CharacterService {
       .valueChanges.pipe(
         take(1),
         pluck('data', 'characters'),
-        tap((apiResponse) =>
-          this.parseCharactersData([...apiResponse.results])
-        ),
+        tap((apiResponse) => {
+          this.parseCharactersData([...apiResponse.results]);
+          if (apiResponse.results.length == 0) {
+            this.toasrt.warning('Nenhum resultado encontrado!');
+          }
+        }),
         catchError((error) => {
-          this.charactersSubject.next([]) == null;
+          this.charactersSubject.next([]);
           return of(error);
         })
       )

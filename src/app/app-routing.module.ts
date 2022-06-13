@@ -63,6 +63,10 @@ const routes: Routes = [
 
   {
     path: '**',
+    redirectTo: 'notFound',
+  },
+  {
+    path: '**',
     loadChildren: () =>
       import('./components/pages/notFound/not-found.module').then(
         (m) => m.NotFoundModule

@@ -11,6 +11,8 @@ import { ThemeService } from 'src/app/core/services/localStorage/theme.service';
 export class HeaderComponent implements OnInit {
   isDarkMode!: boolean;
   trocaIcon: boolean = false;
+  photo: string = 'assets/img/photo.png'
+
   user: Usuario = {
     name: '',
     email: '',

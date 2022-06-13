@@ -52,22 +52,35 @@
               >Sobre</a
             >
           </li>
+          <li></li>
         </ul>
 
-        <div class="dropdown dropstart">
+        <div class="dropdown">
           <a
-            class="dropdown-toggle"
             type="button"
             id="dropdownMenu2"
             data-bs-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
           >
-            <img class="profile" src="{{ user?.photoUrl }}" alt="" />
+            <img
+              *ngIf="user.photoUrl != null"
+              class="profile"
+              src="{{ user?.photoUrl }}"
+              alt=""
+            />
+            <img
+              *ngIf="user.photoUrl == null"
+              class="profile"
+              src="{{ photo }}"
+              alt=""
+            />
           </a>
 
           <div class="dropdown-menu row mr-5" aria-labelledby="dropdownMenu2">
-            <h5 class="dropdown-header">{{ user?.name }}</h5>
+            <h5 *ngIf="user.name != null" class="dropdown-header">
+              {{ user?.name }}
+            </h5>
             <p class="dropdown-item">{{ user?.email }}</p>
             <hr class="dropdown-divider" />
             <h5 class="dropdown-header">Mudar Tema</h5>
